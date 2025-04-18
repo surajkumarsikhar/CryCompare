@@ -1,12 +1,19 @@
-# React + Vite
+# CrypCompare
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CrypCompare is a cryptocurrency comparison tool that provides real-time market data from various crypto exchanges, allowing users to compare the prices and other details of different cryptocurrencies in multiple fiat currencies. The app pulls data from the CoinGecko API and presents it in a clean and user-friendly interface.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- View real-time cryptocurrency prices for a wide range of coins.
+- Compare different cryptocurrencies in terms of price, market cap, volume, and more.
+- Supports multiple fiat currencies for global comparison.
+- User-friendly interface with responsive design.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React.js
+- **Backend**: Only API Fetching
+- **API**: CoinGecko API, News API
+- **Styling**: Tailwind CSS (for modern and responsive design)
+- **Environment Variables**: Store sensitive API keys using `.env` files.
+
