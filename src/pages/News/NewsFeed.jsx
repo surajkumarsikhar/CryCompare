@@ -11,7 +11,7 @@ const NewsFeed = () => {
     const apiKey = import.meta.env.VITE_NEWS_API;
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`https://newsapi.org/v2/everything?q=cryptocurrency&apiKey=${apiKey}`);
+        const response = await axios.get(`https://gnews.io/api/v4/search?q=(cryptocurrency OR bitcoin OR ethereum OR crypto market OR blockchain)&lang=en&max=20&sortby=publishedAt&apikey=${apiKey}`);
         setNews(response.data.articles);
       } catch (err) {
         setError('Error fetching news, please try again later.');
@@ -19,11 +19,10 @@ const NewsFeed = () => {
         setLoading(false);
       }
     };
-    
+
     fetchNews();
   }, []);
 
-  // Skeleton Loader Component
   const SkeletonLoader = () => (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800 dark:text-white animate-pulse">
       <div className="w-full h-48 bg-gray-300 dark:bg-gray-600"></div>
@@ -63,7 +62,7 @@ const NewsFeed = () => {
         {news.map((article, index) => (
           <div key={index} className="bg-white shadow-lg rounded-lg overflow-hidden dark:bg-gray-800 dark:text-white">
             <img
-              src={article.urlToImage || 'https://via.placeholder.com/150'}
+              src={article.image || 'https://via.placeholder.com/150'}
               alt={article.title}
               className="w-full h-48 object-cover"
             />
