@@ -72,7 +72,8 @@ const Home = () => {
 
               {/* Custom Dropdown */}
               {isDropdownVisible && (
-                <div className="dropdown absolute left-0 w-full md:w-xl mt-2 bg-white dark:bg-gray-700 shadow-lg rounded-md z-10">
+                <div className="dropdown absolute left-0 w-full mt-2 md:ml-20 md:w-xl lg:ml-52 lg:w-xl  xl:ml-84
+                2xl:ml-114  bg-white dark:bg-gray-700 shadow-lg rounded-md z-10">
                   <ul className="max-h-60 overflow-y-auto custom-scrollbar">
                     {filteredCoins.map((coin, index) => (
                       <li
