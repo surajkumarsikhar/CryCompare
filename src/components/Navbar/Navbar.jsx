@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { CoinContext } from "../../context/CoinContext";
-import DarkModeToggle from "../DarkModeToggle"; // Assuming DarkModeToggle is in the same folder
+import DarkModeToggle from "../DarkModeToggle";
 
 const Navbar = () => {
   const { setCurrency } = useContext(CoinContext);
@@ -23,40 +23,35 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-50 top-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 py-4 flex justify-between items-center gap-30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
-          {/* <span className="text-xl font-bold text-gray-800 dark:text-white pr-63">CryptoMarket</span>
-           */}
-          <img
-            src={logo}
-            alt="CryptoMarket Logo"
-            className="h-9 mr-105"
-          />
+          <img src={logo} alt="CryptoMarket Logo" className="h-9" />
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 pr-30">
+        <ul className="hidden md:flex space-x-8">
           {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors duration-200 font-medium ${
-                location.pathname === item.path
-                  ? "text-blue-600 font-semibold"
-                  : ""
-              }`}
-            >
-              <li>{item.name}</li>
-            </Link>
+            <li key={item.path}>
+              <Link
+                to={item.path}
+                className={`text-gray-600 dark:text-gray-300 hover:text-blue-500 transition-colors duration-200 font-medium ${
+                  location.pathname === item.path
+                    ? "text-blue-600 font-semibold"
+                    : ""
+                }`}
+              >
+                {item.name}
+              </Link>
+            </li>
           ))}
         </ul>
 
-        {/* Currency Dropdown */}
-        <div className="hidden md:block">
+        {/* Currency Dropdown (Desktop) */}
+        <div className="hidden md:block ml-4">
           <select
             onChange={currencyHandler}
-            className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 ml-20"
+            className="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="usd">USD</option>
             <option value="eur">EURO</option>
@@ -64,7 +59,10 @@ const Navbar = () => {
           </select>
         </div>
 
-        <DarkModeToggle />
+        {/* Dark Mode Toggle */}
+        <div className="ml-4 hidden md:block">
+          <DarkModeToggle />
+        </div>
 
         {/* Mobile Toggle */}
         <div className="md:hidden">
@@ -93,29 +91,38 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 px-4 pb-4 space-y-4">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              onClick={() => setIsOpen(false)}
-              className={`block text-gray-700 dark:text-white hover:text-blue-500 ${
-                location.pathname === item.path
-                  ? "text-blue-600 font-semibold"
-                  : ""
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+          <ul className="space-y-2">
+            {navItems.map((item) => (
+              <li key={item.path}>
+                <Link
+                  to={item.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block text-gray-700 dark:text-white hover:text-blue-500 ${
+                    location.pathname === item.path
+                      ? "text-blue-600 font-semibold"
+                      : ""
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
+          {/* Currency Dropdown */}
           <select
             onChange={currencyHandler}
-            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full mt-2 px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="usd">USD</option>
             <option value="eur">EURO</option>
             <option value="inr">INR</option>
           </select>
+
+          {/* Dark Mode Toggle */}
+          <div className="mt-2">
+            <DarkModeToggle />
+          </div>
         </div>
       )}
     </nav>
