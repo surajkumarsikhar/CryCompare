@@ -29,12 +29,12 @@ const Navbar = () => {
         <img
             src={logo}
             alt="CryptoMarket Logo"
-            className="h-9 mr-105"
+            className="h-9 sm:mr-105"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 pr-30">
+        <ul className="hidden md:flex space-x-8 sm:pr-30">
           {navItems.map((item) => (
             <li key={item.path}>
               <Link
